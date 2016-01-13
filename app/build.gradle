@@ -1,0 +1,50 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "http://dl.bintray.com/brooth/maven"
+    }
+}
+
+apt {
+    arguments {
+        jetaProperties "$project.projectDir/src/main/java/jeta.properties"
+    }
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "org.brooth.androjeta.samples"
+        minSdkVersion 9
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    apt 'org.brooth.androjeta:androjeta-apt:0.3-alpha'
+    compile 'org.brooth.androjeta:androjeta:0.3-alpha'
+}
