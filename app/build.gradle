@@ -45,6 +45,6 @@ android {
 }
 
 dependencies {
-    apt 'org.brooth.androjeta:androjeta-apt:0.3-alpha'
-    compile 'org.brooth.androjeta:androjeta:0.3-alpha'
+    apt 'org.brooth.androjeta:androjeta-apt:0.1-alpha'
+    compile 'org.brooth.androjeta:androjeta:0.1-alpha'
 }

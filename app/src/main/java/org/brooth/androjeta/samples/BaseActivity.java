@@ -34,6 +34,7 @@ public class BaseActivity extends Activity {
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         MetaHelper.findViews(this);
+        MetaHelper.applyOnClicks(this);
     }
 
     @Override

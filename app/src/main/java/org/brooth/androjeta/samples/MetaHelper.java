@@ -20,6 +20,7 @@ import android.os.Bundle;
 
 import org.brooth.androjeta.retain.RetainController;
 import org.brooth.androjeta.ui.FindViewController;
+import org.brooth.androjeta.ui.OnClickController;
 import org.brooth.jeta.metasitory.MapMetasitory;
 import org.brooth.jeta.metasitory.Metasitory;
 
@@ -44,6 +45,10 @@ public class MetaHelper {
 
     public static void findViews(Activity activity) {
         new FindViewController(getInstance().metasitory, activity).findViews();
+    }
+
+    public static void applyOnClicks(Activity activity) {
+        new OnClickController(getInstance().metasitory, activity).addListeners();
     }
 
     public static void saveRetains(Activity activity, Bundle bundle) {

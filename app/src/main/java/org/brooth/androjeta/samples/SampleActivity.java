@@ -16,13 +16,13 @@
 package org.brooth.androjeta.samples;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import org.brooth.androjeta.retain.Retain;
 import org.brooth.androjeta.ui.FindView;
+import org.brooth.androjeta.ui.OnClick;
+import org.brooth.androjeta.ui.OnLongClick;
 
 /**
  * @author Oleg Khalidov (brooth@gmail.com)
@@ -31,10 +31,8 @@ public class SampleActivity extends BaseActivity {
 
     @FindView
     protected TextView textView;
-    @FindView(R.id.editText)
+    @FindView
     protected EditText editText;
-    @FindView(name = "button")
-    protected Button button;
 
     @Retain
     protected String text = "Retain text";
@@ -48,11 +46,16 @@ public class SampleActivity extends BaseActivity {
 
         textView.setText(String.format("Recreated %d times", count++));
         editText.setText(text);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                text = editText.getText().toString();
-            }
-        });
+    }
+
+    @OnClick
+    void onClickSaveButton() {
+        text = editText.getText().toString();
+    }
+
+    @OnLongClick
+    void onLongClickSaveButton() {
+        count = 0;
+        text = "";
     }
 }

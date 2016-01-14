@@ -10,10 +10,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:gravity="center"
-        android:text="Rotate screen to recreate this activity"
         android:paddingBottom="30dp"
-        android:layout_margin="20dp"/>
+        android:text="Rotate screen to recreate this activity"/>
 
     <TextView
         android:id="@+id/sampleActivity_textView"
@@ -22,14 +22,14 @@
         android:layout_margin="20dp"/>
 
     <EditText
-        android:id="@+id/editText"
-        android:saveEnabled="false"
+        android:id="@+id/sampleActivity_editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        android:saveEnabled="false"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/sampleActivity_saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
