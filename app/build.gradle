@@ -28,7 +28,7 @@ apt {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "org.brooth.androjeta.samples"
@@ -51,6 +51,6 @@ android {
 }
 
 dependencies {
-    apt 'org.brooth.androjeta:androjeta-apt:0.3-beta'
-    compile 'org.brooth.androjeta:androjeta:0.3-beta'
+    apt 'org.brooth.androjeta:androjeta-apt:1.0'
+    compile 'org.brooth.androjeta:androjeta:1.0'
 }
