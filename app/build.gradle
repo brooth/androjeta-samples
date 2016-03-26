@@ -15,9 +15,7 @@ apply plugin: 'android-apt'
 repositories {
     mavenLocal()
     mavenCentral()
-    maven {
-        url "http://dl.bintray.com/brooth/maven"
-    }
+    jcenter()
 }
 
 apt {
