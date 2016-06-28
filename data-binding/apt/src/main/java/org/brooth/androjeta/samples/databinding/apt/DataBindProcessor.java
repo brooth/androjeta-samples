@@ -28,7 +28,7 @@ import javax.xml.parsers.SAXParserFactory;
  */
 public class DataBindProcessor extends AbstractProcessor {
 
-    private static final String XMLNS = "xmlns:";
+    private static final String XMLNS_PREFIX = "xmlns:";
     private static final String ANDROID_NAMESPACE = "http://schemas.android.com/apk/res/android";
     private static final String ANDROJETA_NAMESPACE = "http://schemas.jeta.brooth.org/androjeta";
 
@@ -51,11 +51,11 @@ public class DataBindProcessor extends AbstractProcessor {
         super.init(processingContext);
         layoutsPath = processingContext.processingEnv().getOptions().get("layoutsPath");
         if (layoutsPath == null)
-            throw new ProcessingException("layoutsPath == null");
+            throw new ProcessingException("'layoutsPath' not defined");
 
         String appPackage = processingContext.processingProperties().getProperty("application.package");
         if (appPackage == null)
-            throw new ProcessingException(new IllegalStateException("'application.package' not presented"));
+            throw new ProcessingException("'application.package' not defined");
 
         textViewClassname = ClassName.bestGuess("android.widget.TextView");
         rCLassName = ClassName.bestGuess(appPackage + ".R");
@@ -81,7 +81,6 @@ public class DataBindProcessor extends AbstractProcessor {
         if (!layoutFile.exists())
             throw new ProcessingException(new FileNotFoundException(layoutPath));
 
-
         androidPrefix = null;
         androjetaPrefix = null;
 
@@ -93,16 +92,16 @@ public class DataBindProcessor extends AbstractProcessor {
                         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
                             for (int i = 0; i < attributes.getLength(); i++) {
                                 if (androidPrefix == null &&
-                                        attributes.getQName(i).startsWith(XMLNS) &&
+                                        attributes.getQName(i).startsWith(XMLNS_PREFIX) &&
                                         attributes.getValue(i).equals(ANDROID_NAMESPACE)) {
-                                    androidPrefix = attributes.getQName(i).substring(XMLNS.length());
+                                    androidPrefix = attributes.getQName(i).substring(XMLNS_PREFIX.length());
                                     continue;
                                 }
 
                                 if (androjetaPrefix == null &&
-                                        attributes.getQName(i).startsWith(XMLNS) &&
+                                        attributes.getQName(i).startsWith(XMLNS_PREFIX) &&
                                         attributes.getValue(i).equals(ANDROJETA_NAMESPACE)) {
-                                    androjetaPrefix = attributes.getQName(i).substring(XMLNS.length());
+                                    androjetaPrefix = attributes.getQName(i).substring(XMLNS_PREFIX.length());
                                     continue;
                                 }
 
@@ -130,7 +129,7 @@ public class DataBindProcessor extends AbstractProcessor {
 
                             componentExpression = componentExpression.replaceAll("%m", "master");
 
-                            methodBuilder.addStatement("(($T) master.findViewById($T.id.$L))\n\t.setText($L)",
+                            methodBuilder.addStatement("(($T) master.findViewById($T.id.$L)).setText($L)",
                                     textViewClassname, rCLassName, componentId, componentExpression);
 
                             componentId = null;
