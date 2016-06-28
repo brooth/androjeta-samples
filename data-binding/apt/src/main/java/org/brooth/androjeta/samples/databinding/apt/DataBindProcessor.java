@@ -127,8 +127,6 @@ public class DataBindProcessor extends AbstractProcessor {
                                 throw new ProcessingException("Failed to process expression '" +
                                         componentExpression + "', component has no id");
 
-                            componentExpression = componentExpression.replaceAll("%m", "master");
-
                             methodBuilder.addStatement("(($T) master.findViewById($T.id.$L)).setText($L)",
                                     textViewClassname, rCLassName, componentId, componentExpression);
 

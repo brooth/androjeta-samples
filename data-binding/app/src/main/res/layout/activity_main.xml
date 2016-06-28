@@ -9,13 +9,13 @@
 
     <TextView
         android:id="@+id/firstName"
-        androjeta:setText="%m.user.firstName"
+        androjeta:setText="master.user.firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/lastName"
-        androjeta:setText="%m.user.lastName"
+        androjeta:setText="master.user.lastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
